@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sockets Example</title>
+    <script src='/socket.io/socket.io.js'></script>
+    <script>
+      var socket = io('http://{{currentIP}}');
+      socket.on('update', function (data) {
+        document.querySelector('#hh').innerText = data.hours
+        document.querySelector('#mm').innerText = data.minutes
+        document.querySelector('#ss').innerText = data.seconds
+      });
+      //Update the every second
+      setInterval(function(){
+        socket.emit('askForUpdate')
+      }, 1000)
+    </script>
+</head>
+<body>
+  {{{ body }}}
+</body>
+</html>
