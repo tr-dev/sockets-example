@@ -14,10 +14,10 @@ var hbs = exphbs.create({
   helpers : {
     currentIP : ((device) => {
       return device[0]['address'] + `:${PORT}`;
-    })(require('os').networkInterfaces()['eth0'])
+    })(require('os').networkInterfaces()['eth0'] || require('os').networkInterfaces()['lo'])
   }
 })
-console.log(require('os').networkInterfaces())
+
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 
