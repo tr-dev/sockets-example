@@ -5,17 +5,10 @@
     <title>Sockets Example</title>
     <script src='/socket.io/socket.io.js'></script>
     <script>
-      var socket = io('http://{{currentIP}}');
-      socket.on('update', function (data) {
-        document.querySelector('#hh').innerText = data.hours
-        document.querySelector('#mm').innerText = data.minutes
-        document.querySelector('#ss').innerText = data.seconds
-      });
-      //Update the every second
-      setInterval(function(){
-        socket.emit('askForUpdate')
-      }, 1000)
+      window.app = window.app || {};
+      window.app.socket = window.app.socket ||  io('http://{{currentIP}}');
     </script>
+    <script src="/static/js/bundle.js"></script>
 </head>
 <body>
   {{{ body }}}

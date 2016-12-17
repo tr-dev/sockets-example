@@ -1,11 +1,12 @@
 'use strict';
+const express = require('express')
+const PORT    = process.env.PORT || 3000;
+const exphbs  = require('express-handlebars');
 
-var app    = require('express')();
+var app    = express();
 var server = require('http').Server(app);
 var io     = require('socket.io')(server);
 
-const PORT    = process.env.PORT || 3000;
-const exphbs  = require('express-handlebars');
 
 //Setting up views
 var hbs = exphbs.create({
@@ -18,7 +19,9 @@ var hbs = exphbs.create({
   }
 })
 
+
 app.engine('.hbs', hbs.engine);
+app.use('/static', express.static(require('path').join(__dirname, 'static')));
 app.set('view engine', '.hbs');
 
 //Home Route
