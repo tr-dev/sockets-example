@@ -1,5 +1,8 @@
+const io = require('socket.io-client');
+
 (function (window) {
-  var socket = window && window.app && window.app.socket || {};
+
+  var socket = io('http://' + (window && window.app && window.app.config && window.app.config.host || '127.0.0.1:3000'));
   socket.on('update', function (data) {
     document.querySelector('#hh').innerText = data.hours
     document.querySelector('#mm').innerText = data.minutes

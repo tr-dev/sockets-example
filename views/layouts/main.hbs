@@ -3,12 +3,16 @@
 <head>
     <meta charset="utf-8">
     <title>Sockets Example</title>
+    <!--
     <script src='/socket.io/socket.io.js'></script>
+    -->
+        <script src="/static/js/bundle.js"></script>
     <script>
       window.app = window.app || {};
-      window.app.socket = window.app.socket ||  io('http://{{currentIP}}');
+      window.app.config = window.app.config = {};
+      window.app.config.host = "{{currentIP}}"
     </script>
-    <script src="/static/js/bundle.js"></script>
+
 </head>
 <body>
   {{{ body }}}
